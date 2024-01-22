@@ -8,6 +8,6 @@ To exceute the Backend application do following steps:
 2. dotnet watch run
 
 To exceute the Frontend application do following steps:
-1. for now you need to change the backend domain api in the Home Page Component inside the getTopHeadlines method
+1. There are a .env file, there you can change the news api base url to call the backend api
 2. cd Frontend
 3. npm run dev
