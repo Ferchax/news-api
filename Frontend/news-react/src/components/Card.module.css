@@ -1,0 +1,39 @@
+
+div {
+  border: solid black 0px;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 10px;
+}
+.card img {			
+  max-width: 100%;
+}
+.title {
+  font-size: 1.5rem;
+}
+
+@media (min-width: 680px) {
+  .card {
+    flex-direction: row;
+  }
+  .content {
+    display: flex;
+		flex-wrap: wrap;
+  }
+  .card div {
+    width: 100%;
+  }
+  .footer {
+    display: flex;
+    align-self: flex-end;
+  }			
+  .footer div {
+    max-width: 50%;
+  }
+  .more {
+    text-align: right;
+  }
+}
