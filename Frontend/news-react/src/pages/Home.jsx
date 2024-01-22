@@ -50,7 +50,7 @@ const Home = () => {
 
   useEffect(() => {
     const getTopHeadlines = () => {
-      fetch(`https://localhost:7134/api/news/top-headlines?country=${apiParams.country}&pagesize=${apiParams.pagesize}&page=${apiParams.page}`)
+      fetch(`${import.meta.env.VITE_NEWSAPI_URL}top-headlines?country=${apiParams.country}&pagesize=${apiParams.pagesize}&page=${apiParams.page}`)
       .then(res => res.json())
       .then(data => setData(data))
     }
