@@ -1,5 +1,17 @@
-.pagination {
+.wrapPagination {
   display: flex;
-  border: 1px solid black;
+  border: 0px solid black;
   justify-content: space-between;
+  margin: 10px;
+}
+
+@media (min-width: 680px) {
+  .wrapPagination {
+    width: 50%;
+    margin: 0;
+  }
+  .showResults {
+   width: 50%; 
+   text-align: left;
+  }
 }

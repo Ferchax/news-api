@@ -1,0 +1,13 @@
+.pagination {
+  display: flex;
+  flex-direction: column;
+  border: 0px solid black;
+  justify-content: space-between;
+  margin: 20px;
+}
+
+@media (min-width: 680px) {
+  .pagination {
+    flex-direction: row; 
+  }
+}
