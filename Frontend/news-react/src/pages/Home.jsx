@@ -4,6 +4,7 @@ import Card from '../components/Card';
 import FooterBar from '../components/FooterBar/FooterBar';
 import Pagination from '../components/FooterBar/Pagination';
 import { useState, useEffect } from "react";
+import NavBar from '../components/NavBar';
 
 
 const Home = () => {
@@ -30,7 +31,9 @@ const Home = () => {
   return (
     <>
       <h1>Portal de Noticias</h1>
-      <div>
+      <hr />
+      <div className={styles.header}>
+        <NavBar />
         <label>Pais:&nbsp;
           <select onChange={event => setApiParams({...apiParams, country: event.target.value})}>
             <option value="ar">Argentina</option>
