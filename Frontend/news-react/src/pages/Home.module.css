@@ -1,12 +1,6 @@
 h1 {
   font-size: 2.2em !important;
 }
-.header {
-  border: 0px solid black;
-  display: flex;
-  flex-direction: column;
-  margin: 10px;
-}
 .wrapPagination {
   display: flex;
   border: 0px solid black;
@@ -15,14 +9,6 @@ h1 {
 }
 
 @media (min-width: 680px) {
-  h1 {
-    font-size: 3.2em !important;
-    text-align: left;
-  }
-  .header {
-    flex-direction: row;
-    justify-content: space-between;
-  }
   .wrapPagination {
     width: 50%;
     margin: 0;

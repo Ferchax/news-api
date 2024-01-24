@@ -1,0 +1,17 @@
+.header {
+  border: 0px solid black;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+@media (min-width: 680px) {
+  h1 {
+    font-size: 3.2em !important;
+    text-align: left;
+  }
+  .header {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
