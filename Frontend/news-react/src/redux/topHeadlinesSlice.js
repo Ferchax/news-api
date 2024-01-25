@@ -34,9 +34,6 @@ export const topHeadlinesSlice = createSlice({
     },
     changePage: (state, action) => {
       state.page = action.payload
-    },
-    setData: (state, action) => {
-      state.data = action.payload
     }
   }, 
   extraReducers: (builder) => {
@@ -60,7 +57,6 @@ export const {
   resetPagination,
   changeCountry, 
   changePagesize, 
-  changePage,
-  setData } = topHeadlinesSlice.actions
+  changePage } = topHeadlinesSlice.actions
 
 export default topHeadlinesSlice.reducer

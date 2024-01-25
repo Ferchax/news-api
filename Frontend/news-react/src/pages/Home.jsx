@@ -18,7 +18,7 @@ const Home = () => {
   return (
     <>      
       <div>
-        {topHeadlines.data?.data.articles.map((article, i) => 
+        {topHeadlines.data?.data?.articles.map((article, i) => 
           <Card article={article} key={i}/>
         )}
       </div>
