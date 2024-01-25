@@ -1,3 +1,9 @@
+.wrapPagination {
+  display: flex;
+  border: 0px solid black;
+  justify-content: space-between;
+  margin: 10px;
+}
 .pagination {
   display: flex;
   flex-direction: column;
@@ -9,5 +15,13 @@
 @media (min-width: 680px) {
   .pagination {
     flex-direction: row; 
+  }
+  .wrapPagination {
+    width: 50%;
+    margin: 0;
+  }
+  .showResults {
+   width: 50%; 
+   text-align: left;
   }
 }
