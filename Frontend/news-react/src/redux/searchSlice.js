@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { updatePagination } from './paginationSlice'
 import axios from 'axios'
 
 const initialState = {
@@ -6,28 +7,34 @@ const initialState = {
   country: "ar",
   keywords: "",
   dateFrom: "",
-  dateTo: "",
-  pagesize: 10,
-  page: 1,
+  dateTo: "",  
   data: null,
   error: ''
 }
 
 export const fetchSearch = createAsyncThunk('fetchSearch', async (_, thunkAPI) => {
-  const state = thunkAPI.getState().search;
-  const querystring = `?keywords=${state.keywords}&dateFrom=${state.dateFrom}&dateTo=${state.dateTo}&pagesize=${state.pagesize}&page=${state.page}`
+  const searchState = thunkAPI.getState().search;
+  const paginationState = thunkAPI.getState().pagination;
+  const querystring = `?keywords=${searchState.keywords}
+    &dateFrom=${searchState.dateFrom}
+    &dateTo=${searchState.dateTo}
+    &pagesize=${paginationState.pagesize}
+    &page=${paginationState.page}`
+
   return axios
     .get(`${import.meta.env.VITE_NEWSAPI_URL}search${querystring}`)
-    .then(response => response.data)
+    .then(response => {
+      thunkAPI.dispatch(updatePagination(response.data));
+      return response.data
+    })
 })
 
 export const searchSlice = createSlice({
   name: "search",
   initialState,
   reducers: {
-    resetPagination: (state) => {
-      state.pagesize = initialState.pagesize,
-      state.page = initialState.page
+    resetSearchData: (state) => {
+      state.data = null
     },
     changeCountry: (state, action) => {
       state.country = action.payload
@@ -40,12 +47,6 @@ export const searchSlice = createSlice({
     },
     changeKeywords: (state, action) => {
       state.keywords = action.payload
-    },
-    changePagesize: (state, action) => {
-      state.pagesize = action.payload
-    },
-    changePage: (state, action) => {
-      state.page = action.payload
     }
   }, 
   extraReducers: (builder) => {
@@ -66,12 +67,10 @@ export const searchSlice = createSlice({
 })
 
 export const { 
-  resetPagination,
+  resetSearchData,
   changeCountry,
   changeDateFrom,
   changeDateTo, 
-  changeKeywords,
-  changePagesize, 
-  changePage } = searchSlice.actions
+  changeKeywords } = searchSlice.actions
 
 export default searchSlice.reducer

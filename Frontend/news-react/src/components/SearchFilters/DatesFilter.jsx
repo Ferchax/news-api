@@ -1,7 +1,8 @@
+
 import { useState } from "react"
-import { useDispatch } from 'react-redux'
-import DatePicker from "react-datepicker"
+import { useDispatch, useSelector } from 'react-redux'
 import { changeDateFrom, changeDateTo } from '../../redux/searchSlice'
+import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import styles from './DatesFilter.module.css'
 import moment from 'moment'
@@ -9,6 +10,7 @@ import moment from 'moment'
 const DatesFilter = () => {
   const [dateFrom, setDateFrom] = useState("");
   const [dateTo, setDateTo] = useState("");
+  const search = useSelector(state => state.search)
   const dispatch = useDispatch()
 
   function changeDateFromHandler(date) {
@@ -24,10 +26,10 @@ const DatesFilter = () => {
   return (
     <div className={styles.datesFilter}>
       <label>Desde:&nbsp;
-        <DatePicker selected={dateFrom} onChange={(date) => changeDateFromHandler(date)} dateFormat="dd/MM/yyyy" />
+        <DatePicker selected={dateFrom} onChange={(date) => changeDateFromHandler(date)} dateFormat="dd/MM/yyyy" value={search.dateFrom} />
       </label>
       <label>Hasta:&nbsp;
-      <DatePicker selected={dateTo} onChange={(date) => changeDateToHandler(date)} dateFormat="dd/MM/yyyy" />
+      <DatePicker selected={dateTo} onChange={(date) => changeDateToHandler(date)} dateFormat="dd/MM/yyyy" value={search.dateTo} />
       </label>
     </div>
   )

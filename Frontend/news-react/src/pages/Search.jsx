@@ -10,6 +10,7 @@ import styles from './Search.module.css'
 const Search = () => {
   const [searchTerm, setSearchTerm] = useState('')
   const search = useSelector(state => state.search)
+  const pagination = useSelector(state => state.pagination)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -27,7 +28,7 @@ const Search = () => {
       dispatch(fetchSearch())
     }
     getSearch()
-  }, [search.dateFrom, search.dateTo, searchTerm, search.pagesize, search.page, dispatch])
+  }, [search.dateFrom, search.dateTo, searchTerm, pagination.pagesize, pagination.page, dispatch])
 
   return (
     <>

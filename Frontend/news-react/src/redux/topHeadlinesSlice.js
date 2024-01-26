@@ -1,39 +1,35 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { updatePagination } from './paginationSlice'
 import axios from 'axios'
 
 const initialState = {
   loading: false,
   country: "ar",
-  pagesize: 10,
-  page: 1,
   data: null,
   error: ''
 }
 
 export const fetchTopHeadlines = createAsyncThunk('fetchTopHeadlines', async (_, thunkAPI) => {
-  const state = thunkAPI.getState().topHeadlines;
-  const querystring = `?country=${state.country}&pagesize=${state.pagesize}&page=${state.page}`
+  const stateTopHeadlines = thunkAPI.getState().topHeadlines;
+  const paginationState = thunkAPI.getState().pagination;
+  const querystring = `?country=${stateTopHeadlines.country}&pagesize=${paginationState.pagesize}&page=${paginationState.page}`
   return axios
     .get(`${import.meta.env.VITE_NEWSAPI_URL}top-headlines${querystring}`)
-    .then(response => response.data)
+    .then(response => {
+      thunkAPI.dispatch(updatePagination(response.data));
+      return response.data
+    })
 })
 
 export const topHeadlinesSlice = createSlice({
   name: "topHeadlines",
   initialState,
   reducers: {
-    resetPagination: (state) => {
-      state.pagesize = initialState.pagesize,
-      state.page = initialState.page
+    resetTopHeadData: (state) => {
+      state.data = null
     },
     changeCountry: (state, action) => {
       state.country = action.payload
-    },
-    changePagesize: (state, action) => {
-      state.pagesize = action.payload
-    },
-    changePage: (state, action) => {
-      state.page = action.payload
     }
   }, 
   extraReducers: (builder) => {
@@ -54,9 +50,7 @@ export const topHeadlinesSlice = createSlice({
 })
 
 export const { 
-  resetPagination,
-  changeCountry, 
-  changePagesize, 
-  changePage } = topHeadlinesSlice.actions
+  resetTopHeadData,
+  changeCountry } = topHeadlinesSlice.actions
 
 export default topHeadlinesSlice.reducer

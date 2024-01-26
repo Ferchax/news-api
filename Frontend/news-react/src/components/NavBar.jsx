@@ -1,18 +1,30 @@
 import { Link } from "react-router-dom"
 import { useDispatch } from 'react-redux'
-import { resetPagination } from '../redux/topHeadlinesSlice'
+import { resetPagination } from '../redux/paginationSlice'
+import { resetTopHeadData } from '../redux/topHeadlinesSlice'
+import { resetSearchData } from '../redux/searchSlice'
 
 const NavBar = () => {
   const dispatch = useDispatch()
+
+  const topHeadlinesClickHandler = () => {
+    dispatch(resetPagination())
+    dispatch(resetTopHeadData())
+  }
+
+  const searchClickHandler = () => {
+    dispatch(resetPagination())
+    dispatch(resetSearchData())
+  }
 
   return (
     <nav>
       <ul className="flex justify-center sm:justify-start">
         <li className="mr-6">
-          <Link className="text-blue-500 hover:text-blue-800" to="/" onClick={() => dispatch(resetPagination())}>Ultimas Noticias</Link>
+          <Link className="text-blue-500 hover:text-blue-800" to="/" onClick={topHeadlinesClickHandler}>Ultimas Noticias</Link>
         </li>
         <li className="mr-6">
-          <Link className="text-blue-500 hover:text-blue-800" to="/search" onClick={() => dispatch(resetPagination())}>Buscador</Link>
+          <Link className="text-blue-500 hover:text-blue-800" to="/search" onClick={searchClickHandler}>Buscador</Link>
         </li>            
       </ul>
     </nav>

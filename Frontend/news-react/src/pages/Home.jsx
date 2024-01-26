@@ -6,6 +6,7 @@ import { fetchTopHeadlines } from '../redux/topHeadlinesSlice'
 
 const Home = () => {
   const topHeadlines = useSelector(state => state.topHeadlines)
+  const pagination = useSelector(state => state.pagination)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -13,7 +14,7 @@ const Home = () => {
       dispatch(fetchTopHeadlines())
     }
     getTopHeadlines()
-  }, [topHeadlines.country, topHeadlines.pagesize, topHeadlines.page, dispatch])
+  }, [topHeadlines.country, pagination.pagesize, pagination.page, dispatch])
 
   return (
     <>      
