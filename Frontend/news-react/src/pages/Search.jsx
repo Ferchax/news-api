@@ -37,9 +37,10 @@ const Search = () => {
         <KeywordFilter />
       </div>
       <div>
-        {search.data?.data.articles.map((article, i) => 
+        {!search.loading ? 
+          search.data?.data.articles.map((article, i) => 
           <Card article={article} key={i}/>
-        )}
+        ): <div style={{fontSize: '1.5rem'}}>Cargando...</div>}
       </div>
     </>
   )

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import { useDispatch } from 'react-redux'
 import { resetPagination } from '../redux/paginationSlice'
 import { resetTopHeadData } from '../redux/topHeadlinesSlice'
@@ -21,10 +21,10 @@ const NavBar = () => {
     <nav>
       <ul className="flex justify-center sm:justify-start">
         <li className="mr-6">
-          <Link className="text-blue-500 hover:text-blue-800" to="/" onClick={topHeadlinesClickHandler}>Ultimas Noticias</Link>
+          <NavLink className={({ isActive }) => (isActive ? 'text-blue-800' : 'text-blue-500 hover:text-blue-800')} to="/" onClick={topHeadlinesClickHandler}>Ultimas Noticias</NavLink>
         </li>
         <li className="mr-6">
-          <Link className="text-blue-500 hover:text-blue-800" to="/search" onClick={searchClickHandler}>Buscador</Link>
+          <NavLink className={({ isActive }) => (isActive ? 'text-blue-800' : 'text-blue-500 hover:text-blue-800')} to="/search" onClick={searchClickHandler}>Buscador</NavLink>
         </li>            
       </ul>
     </nav>

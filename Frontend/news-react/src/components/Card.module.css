@@ -18,10 +18,12 @@ div {
 @media (min-width: 680px) {
   .card {
     flex-direction: row;
+    padding: 10px;
   }
   .content {
     display: flex;
 		flex-wrap: wrap;
+    margin-left: 10px;
   }
   .card div {
     width: 100%;
@@ -32,6 +34,9 @@ div {
   }			
   .footer div {
     max-width: 50%;
+  }
+  .date {
+    text-align: left;
   }
   .more {
     text-align: right;

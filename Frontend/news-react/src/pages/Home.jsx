@@ -18,10 +18,11 @@ const Home = () => {
 
   return (
     <>      
-      <div>
-        {topHeadlines.data?.data?.articles.map((article, i) => 
+      <div>        
+        {!topHeadlines.loading ? 
+          topHeadlines.data?.data?.articles.map((article, i) => 
           <Card article={article} key={i}/>
-        )}
+        ): <div style={{fontSize: '1.5rem'}}>Cargando...</div>}
       </div>
     </>
   )
