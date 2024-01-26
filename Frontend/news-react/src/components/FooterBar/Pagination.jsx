@@ -2,7 +2,7 @@
 import styles from './Pagination.module.css'
 
 const Pagination = ({currentPage, pages, handleClick}) => {
-  const lengthNumbersToShow = 2
+  const lengthNumbersToShow = pages > 2 ? 2 : 2 - pages
   let firstNumberToShow = 1 
   let lengthToShow = lengthNumbersToShow
 
