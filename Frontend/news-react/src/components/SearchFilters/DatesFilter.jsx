@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 
 import { useState } from "react"
 import { useDispatch, useSelector } from 'react-redux'
@@ -15,21 +16,29 @@ const DatesFilter = () => {
 
   function changeDateFromHandler(date) {
     setDateFrom(date)
-    dispatch(changeDateFrom(moment(date, 'YYYY-MM-DD').format('DD/MM/YYYY')))
+    dispatch(changeDateFrom(moment(date).format('YYYY-MM-DD')))
   }
 
   function changeDateToHandler(date) {
     setDateTo(date)
-    dispatch(changeDateTo(moment(date, 'YYYY-MM-DD').format('DD/MM/YYYY')))
+    dispatch(changeDateTo(moment(date).format('YYYY-MM-DD')))
   }
 
   return (
     <div className={styles.datesFilter}>
       <label>Desde:&nbsp;
-        <DatePicker selected={dateFrom} onChange={(date) => changeDateFromHandler(date)} dateFormat="dd/MM/yyyy" value={search.dateFrom} />
+        <DatePicker selected={dateFrom} 
+          onChange={(date) => changeDateFromHandler(date)} 
+          dateFormat="dd/MM/yyyy" 
+          value={search.dateFrom && moment(search.dateFrom).format('DD/MM/YYYY')}
+        />
       </label>
       <label>Hasta:&nbsp;
-      <DatePicker selected={dateTo} onChange={(date) => changeDateToHandler(date)} dateFormat="dd/MM/yyyy" value={search.dateTo} />
+        <DatePicker selected={dateTo} 
+          onChange={(date) => changeDateToHandler(date)} 
+          dateFormat="dd/MM/yyyy" 
+          value={search.dateTo && moment(search.dateTo).format('DD/MM/YYYY')}
+        />
       </label>
     </div>
   )

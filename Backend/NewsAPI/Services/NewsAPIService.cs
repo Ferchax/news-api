@@ -33,7 +33,8 @@ namespace NewsAPI.Services
             {                
                 var uri = $"{_base_uri}{endpoint}?language={_language}" +
                     $"&q={search.Keywords}" +
-                    $"&from={search.DateFrom}&to={search.DateTo}" +
+                    $"&from={search.DateFrom?.ToString("yyyy-MM-dd")}" +
+                    $"&to={search.DateTo?.ToString("yyyy-MM-dd")}" +
                     $"&pagesize={search.PageSize}&page={search.Page}";
 
                 var data = await _client.GetFromJsonAsync<ApiResponse>(uri);
