@@ -1,4 +1,5 @@
 This project has been created using VS Code and It needs two extensions, if you want run in VS Code.
+
 ![image](https://github.com/Ferchax/news-api/assets/10538408/d2b222ef-a7ac-4e57-8de7-8a186ff33e88)
 
 To execute the Backend application do the following steps:
